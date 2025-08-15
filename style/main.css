@@ -69,7 +69,7 @@ h1.title {
     top: 10px;
     left: 0;
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 15px;
     line-height: 13px;
     text-align: center;
     color: #eee4da; }
@@ -519,8 +519,6 @@ hr {
 }
 .score-gap {
   margin: 0px 10px 10px 10px;
-
-
 }
 .above-game:after {
   content: "";
@@ -552,51 +550,71 @@ hr {
   margin-top: 50px; }
 
 @media screen and (max-width: 520px) {
-  html, body {
-    font-size: 15px; }
+  /* Responsive sizing with exact inner math so tiles fit perfectly */
+  :root {
+    --mobile-grid-size: min(88vw, 370px);
+    --grid-padding: 10px; /* padding inside .game-container */
+    --cell-gap: 10px;
+    --inner-size: calc(var(--mobile-grid-size) - 2 * var(--grid-padding)); /* area available for 4x4 grid */
+    --cell-size: calc((var(--inner-size) - 3 * var(--cell-gap)) / 4);
+    --step: calc(var(--cell-size) + var(--cell-gap));
+  }
+
+  html, body { font-size: 15px; }
 
   body {
-    margin: 50px 0;
-    padding: 0 20px; }
+    margin: 30px 0;
+    padding: 0 12px;
+  }
 
   .container {
-    width: 400px;
+    width: 100%;
+    max-width: 420px;
     margin: 0 auto;
-  margin-top: 100px;}
+    margin-top: 40px;
+    box-sizing: border-box;
+    padding: 0 6px;
+  }
 
   .score-container, .best-container {
-    margin-top: 10px;
-    padding: 15px 10px;
-    min-width: 40px; }
+    margin-top: 8px;
+    padding: 12px 8px;
+    height: 50px;
+    min-width: 40px;
+    box-sizing: border-box;
+  }
 
-  .heading {
-    margin: 0 0 10px 0;}
+  .heading { margin: 0 0 10px 0; }
 
   .restart-button {
     width: 100%;
     height: 50px;
     padding: 0;
     display: block;
-    font-size: 25px;
+    font-size: 20px;
     background-color: #a6998c;
     box-sizing: border-box;
-    text-align: center; }
-
-  .score{
-    width: 92%;
-    text-align:justify;
-    margin: 40px 0px;
-    display:grid;
-    }
-
-  .score-gap {
-    margin: 5px 0px;
+    text-align: center;
+    line-height: 44px;
+    border-radius: 3px;
   }
 
+  .score {
+    width: 100%;
+    text-align: justify;
+    margin: 20px 0;
+    display: grid;
+    grid-auto-flow: row;
+    gap: 6px;
+  }
+
+  .score-gap { margin: 5px 0; }
+
+  /* Game area: square and responsive, hide overflow to avoid scrollbars */
   .game-container {
-    margin-top: 25px;
+    margin-top: 16px;
     position: relative;
-    padding: 10px;
+    padding: var(--grid-padding);
     cursor: default;
     -webkit-touch-callout: none;
     -ms-touch-callout: none;
@@ -607,175 +625,180 @@ hr {
     touch-action: none;
     background: #bbada0;
     border-radius: 6px;
-    width: 370px;
-    height: 370px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box; }
-    .game-container .game-message {
-      display: none;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: rgba(238, 228, 218, 0.5);
-      z-index: 100;
-      text-align: center;
-      -webkit-animation: fade-in 800ms ease 1200ms;
-      -moz-animation: fade-in 800ms ease 1200ms;
-      animation: fade-in 800ms ease 1200ms;
-      -webkit-animation-fill-mode: both;
-      -moz-animation-fill-mode: both;
-      animation-fill-mode: both; }
-      .game-container .game-message p {
-        font-size: 60px;
-        font-weight: bold;
-        height: 60px;
-        line-height: 60px;
-        margin-top: 222px; }
-      .game-container .game-message .lower {
-        display: block;
-        margin-top: 59px; }
-      .game-container .game-message a {
-        display: inline-block;
-        background: #8f7a66;
-        border-radius: 3px;
-        padding: 10px 30px;
-        text-decoration: none;
-        color: #f9f6f2;
-        height: 40px;
-        line-height: 42px;
-        margin-left: 9px; }
-        .game-container .game-message a.keep-playing-button {
-          display: none; }
-      .game-container .game-message.game-won {
-        background: rgba(237, 194, 46, 0.5);
-        color: #f9f6f2; }
-        .game-container .game-message.game-won a.keep-playing-button {
-          display: inline-block; }
-      .game-container .game-message.game-won, .game-container .game-message.game-over {
-        display: block; }
 
+    width: var(--mobile-grid-size);
+    height: var(--mobile-grid-size);
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden; /* prevent the vertical scrollbar seen earlier */
+  }
+
+  .game-container .game-message {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: rgba(238, 228, 218, 0.5);
+    z-index: 100;
+    text-align: center;
+    -webkit-animation: fade-in 800ms ease 1200ms;
+    animation: fade-in 800ms ease 1200ms;
+    animation-fill-mode: both;
+  }
+  .game-container .game-message p {
+    font-size: 32px;
+    font-weight: bold;
+    height: auto;
+    line-height: 1.1;
+    margin-top: 26%;
+  }
+  .game-container .game-message .lower { margin-top: 18px; }
+  .game-container .game-message a {
+    display: inline-block;
+    background: #8f7a66;
+    border-radius: 3px;
+    padding: 8px 18px;
+    text-decoration: none;
+    color: #f9f6f2;
+    margin-left: 8px;
+  }
+  .game-container .game-message.game-won { background: rgba(237, 194, 46, 0.5); color: #f9f6f2; }
+  .game-container .game-message.game-won a.keep-playing-button { display: inline-block; }
+  .game-container .game-message.game-won, .game-container .game-message.game-over { display: block; }
+
+  /* Grid container placed exactly inside game-container padding using inset */
   .grid-container {
     position: absolute;
-    z-index: 1; }
+    z-index: 1;
+    inset: var(--grid-padding);
+    width: var(--inner-size);
+    height: var(--inner-size);
+    box-sizing: border-box;
+    padding: 0; /* inner grid cells rely on cell-size and gaps */
+  }
 
-  .grid-row {
-    margin-bottom: 10px; }
-    .grid-row:last-child {
-      margin-bottom: 0; }
-    .grid-row:after {
-      content: "";
-      display: block;
-      clear: both; }
+  .grid-row { margin-bottom: var(--cell-gap); }
+  .grid-row:last-child { margin-bottom: 0; }
+  .grid-row:after { content: ""; display: block; clear: both; }
 
   .grid-cell {
-    width: 80px;
-    height: 80px;
-    margin-right: 10px;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    margin-right: var(--cell-gap);
     float: left;
     border-radius: 3px;
-    background: rgba(238, 228, 218, 0.35); }
-    .grid-cell:last-child {
-      margin-right: 0; }
+    background: rgba(238, 228, 218, 0.35);
+    box-sizing: border-box;
+  }
+  .grid-cell:last-child { margin-right: 0; }
 
+  /* Tile container overlays exactly the inner grid area */
   .tile-container {
     position: absolute;
-    z-index: 2; }
+    z-index: 2;
+    inset: var(--grid-padding); /* align to the same inner area */
+    width: var(--inner-size);
+    height: var(--inner-size);
+    box-sizing: border-box;
+    pointer-events: none;
+  }
 
-  .tile, .tile .tile-inner {
-    width: 80px;
-    height: 80px;
-    line-height: 80px; }
-  .tile.tile-position-1-1 {
-    -webkit-transform: translate(0px, 0px);
-    -moz-transform: translate(0px, 0px);
-    -ms-transform: translate(0px, 0px);
-    transform: translate(0px, 0px); }
-  .tile.tile-position-1-2 {
-    -webkit-transform: translate(0px, 90px);
-    -moz-transform: translate(0px, 90px);
-    -ms-transform: translate(0px, 90px);
-    transform: translate(0px, 90px); }
-  .tile.tile-position-1-3 {
-    -webkit-transform: translate(0px, 180px);
-    -moz-transform: translate(0px, 180px);
-    -ms-transform: translate(0px, 180px);
-    transform: translate(0px, 180px); }
-  .tile.tile-position-1-4 {
-    -webkit-transform: translate(0px, 270px);
-    -moz-transform: translate(0px, 270px);
-    -ms-transform: translate(0px, 270px);
-    transform: translate(0px, 270px); }
-  .tile.tile-position-2-1 {
-    -webkit-transform: translate(90px, 0px);
-    -moz-transform: translate(90px, 0px);
-    -ms-transform: translate(90px, 0px);
-    transform: translate(90px, 0px); }
-  .tile.tile-position-2-2 {
-    -webkit-transform: translate(90px, 90px);
-    -moz-transform: translate(90px, 90px);
-    -ms-transform: translate(90px, 90px);
-    transform: translate(90px, 90px); }
-  .tile.tile-position-2-3 {
-    -webkit-transform: translate(67px, 135px);
-    -moz-transform: translate(67px, 135px);
-    -ms-transform: translate(67px, 135px);
-    transform: translate(90px, 180px); }
-  .tile.tile-position-2-4 {
-    -webkit-transform: translate(90px, 270px);
-    -moz-transform: translate(90px, 270px);
-    -ms-transform: translate(90px, 270px);
-    transform: translate(90px, 270px); }
-  .tile.tile-position-3-1 {
-    -webkit-transform: translate(180px, 0px);
-    -moz-transform: translate(180px, 0px);
-    -ms-transform: translate(180px, 0px);
-    transform: translate(180px, 0px); }
-  .tile.tile-position-3-2 {
-    -webkit-transform: translate(180px, 90px);
-    -moz-transform: translate(180px, 90px);
-    -ms-transform: translate(180px, 90px);
-    transform: translate(180px, 90px); }
-  .tile.tile-position-3-3 {
-    -webkit-transform: translate(180px, 180px);
-    -moz-transform: translate(180px, 180px);
-    -ms-transform: translate(180px, 180px);
-    transform: translate(180px, 180px); }
-  .tile.tile-position-3-4 {
-    -webkit-transform: translate(180px, 270px);
-    -moz-transform: translate(180px, 270px);
-    -ms-transform: translate(180px, 270px);
-    transform: translate(180px, 270px); }
-  .tile.tile-position-4-1 {
-    -webkit-transform: translate(270px, 0px);
-    -moz-transform: translate(270px, 0px);
-    -ms-transform: translate(270px, 0px);
-    transform: translate(270px, 0px); }
-  .tile.tile-position-4-2 {
-    -webkit-transform: translate(270px, 90px);
-    -moz-transform: translate(270px, 90px);
-    -ms-transform: translate(270px, 90px);
-    transform: translate(270px, 90px); }
-  .tile.tile-position-4-3 {
-    -webkit-transform: translate(270px, 180px);
-    -moz-transform: translate(270px, 180px);
-    -ms-transform: translate(270px, 180px);
-    transform: translate(270px, 180px); }
-  .tile.tile-position-4-4 {
-    -webkit-transform: translate(270px, 270px);
-    -moz-transform: translate(270px, 270px);
-    -ms-transform: translate(270px, 270px);
-    transform: translate(270px, 270px); }
+  /* Tiles must be absolute so transform positions are exact */
+  .tile {
+    position: absolute;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    box-sizing: border-box;
+    will-change: transform;
+  }
 
   .tile .tile-inner {
-    font-size: 55px; }
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(var(--cell-size) * 0.5);
+    font-weight: 700;
+    box-sizing: border-box;
+    pointer-events: auto;
+    line-height: normal;
+  }
 
+  /* Use translate3d + vendor prefixes for consistent mobile behavior */
+  .tile.tile-position-1-1 {
+    -webkit-transform: translate3d(calc(var(--step) * 0), calc(var(--step) * 0), 0);
+    transform: translate3d(calc(var(--step) * 0), calc(var(--step) * 0), 0);
+  }
+  .tile.tile-position-1-2 {
+    -webkit-transform: translate3d(calc(var(--step) * 0), calc(var(--step) * 1), 0);
+    transform: translate3d(calc(var(--step) * 0), calc(var(--step) * 1), 0);
+  }
+  .tile.tile-position-1-3 {
+    -webkit-transform: translate3d(calc(var(--step) * 0), calc(var(--step) * 2), 0);
+    transform: translate3d(calc(var(--step) * 0), calc(var(--step) * 2), 0);
+  }
+  .tile.tile-position-1-4 {
+    -webkit-transform: translate3d(calc(var(--step) * 0), calc(var(--step) * 3), 0);
+    transform: translate3d(calc(var(--step) * 0), calc(var(--step) * 3), 0);
+  }
+
+  .tile.tile-position-2-1 {
+    -webkit-transform: translate3d(calc(var(--step) * 1), calc(var(--step) * 0), 0);
+    transform: translate3d(calc(var(--step) * 1), calc(var(--step) * 0), 0);
+  }
+  .tile.tile-position-2-2 {
+    -webkit-transform: translate3d(calc(var(--step) * 1), calc(var(--step) * 1), 0);
+    transform: translate3d(calc(var(--step) * 1), calc(var(--step) * 1), 0);
+  }
+  .tile.tile-position-2-3 {
+    -webkit-transform: translate3d(calc(var(--step) * 1), calc(var(--step) * 2), 0);
+    transform: translate3d(calc(var(--step) * 1), calc(var(--step) * 2), 0);
+  }
+  .tile.tile-position-2-4 {
+    -webkit-transform: translate3d(calc(var(--step) * 1), calc(var(--step) * 3), 0);
+    transform: translate3d(calc(var(--step) * 1), calc(var(--step) * 3), 0);
+  }
+
+  .tile.tile-position-3-1 {
+    -webkit-transform: translate3d(calc(var(--step) * 2), calc(var(--step) * 0), 0);
+    transform: translate3d(calc(var(--step) * 2), calc(var(--step) * 0), 0);
+  }
+  .tile.tile-position-3-2 {
+    -webkit-transform: translate3d(calc(var(--step) * 2), calc(var(--step) * 1), 0);
+    transform: translate3d(calc(var(--step) * 2), calc(var(--step) * 1), 0);
+  }
+  .tile.tile-position-3-3 {
+    -webkit-transform: translate3d(calc(var(--step) * 2), calc(var(--step) * 2), 0);
+    transform: translate3d(calc(var(--step) * 2), calc(var(--step) * 2), 0);
+  }
+  .tile.tile-position-3-4 {
+    -webkit-transform: translate3d(calc(var(--step) * 2), calc(var(--step) * 3), 0);
+    transform: translate3d(calc(var(--step) * 2), calc(var(--step) * 3), 0);
+  }
+
+  .tile.tile-position-4-1 {
+    -webkit-transform: translate3d(calc(var(--step) * 3), calc(var(--step) * 0), 0);
+    transform: translate3d(calc(var(--step) * 3), calc(var(--step) * 0), 0);
+  }
+  .tile.tile-position-4-2 {
+    -webkit-transform: translate3d(calc(var(--step) * 3), calc(var(--step) * 1), 0);
+    transform: translate3d(calc(var(--step) * 3), calc(var(--step) * 1), 0);
+  }
+  .tile.tile-position-4-3 {
+    -webkit-transform: translate3d(calc(var(--step) * 3), calc(var(--step) * 2), 0);
+    transform: translate3d(calc(var(--step) * 3), calc(var(--step) * 2), 0);
+  }
+  .tile.tile-position-4-4 {
+    -webkit-transform: translate3d(calc(var(--step) * 3), calc(var(--step) * 3), 0);
+    transform: translate3d(calc(var(--step) * 3), calc(var(--step) * 3), 0);
+  }
+
+  /* Message tweak for mobile */
   .game-message p {
-    font-size: 30px !important;
-    height: 30px !important;
-    line-height: 30px !important;
-    margin-top: 90px !important; }
-  .game-message .lower {
-    margin-top: 30px !important; } }
+    font-size: 18px !important;
+    height: auto !important;
+    line-height: 1.2 !important;
+    margin-top: 24% !important;
+  }
+  .game-message .lower { margin-top: 14px !important; }
+}
