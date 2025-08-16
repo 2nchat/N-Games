@@ -53,7 +53,7 @@ h1.title {
 .score-container, .best-container {
   position: relative;
   display: inline-block;
-  background: #bbada0;
+  background: #c2b196;
   padding: 15px 25px;
   font-size: 25px;
   height: 25px;
@@ -552,7 +552,7 @@ hr {
 @media screen and (max-width: 520px) {
   /* Responsive sizing with exact inner math so tiles fit perfectly */
   :root {
-    --mobile-grid-size: min(88vw, 370px);
+    --mobile-grid-size: min(92vw, 400px);
     --grid-padding: 10px; /* padding inside .game-container */
     --cell-gap: 10px;
     --inner-size: calc(var(--mobile-grid-size) - 2 * var(--grid-padding)); /* area available for 4x4 grid */
