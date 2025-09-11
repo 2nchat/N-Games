@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>UNO</title>
+  <!-- Favicon setup -->
+  <link rel="icon" type="image/jpeg" href="logo.jpeg" />
+  <style>
+    html, body {
+      margin: 0; padding: 0; height: 100%; overflow: hidden;
+      background-color: #000;
+    }
+    iframe {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+
+    /* For mobile devices: rotate iframe to landscape */
+    @media (max-width: 768px) {
+      iframe {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        width: 100vh;  /* Swap width/height for rotation */
+        height: 100vw;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: 0;
+        padding: 0;
+        translate: -50% -50%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <iframe 
+    src="https://www.onlinegames.io/games/2023/code/four-colors/index.html" 
+    allowfullscreen 
+    scrolling="no"
+  ></iframe>
+</body>
+</html>
