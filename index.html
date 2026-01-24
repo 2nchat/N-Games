@@ -1,92 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <title>2048</title>
-
-  <link href="style/main.css" rel="stylesheet" type="text/css">
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
-  <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
-  <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x920.png"  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone, retina -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Games | WH2 Games</title>
+  <!-- Favicon setup -->
+  <link rel="icon" type="image/png" href="logo.jpeg" />
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <div class="container">
+  <header>
+    <h1>🎮 Mini Games</h1>
+    <p class="subtitle">Play fun and addictive browser mini-games!</p>
+  </header>
 
-    
-    <div class="above-game">
-      <p>Join the numbers and get to the <strong>2048 tile!</strong></p> 
-    </div>
+  <main class="games-container">
+    <a href="games/2048/index.html" class="game-card">
+      <img src="games/2048/logo.jpg" alt="2048 Game" />
+      <p>2048</p>
+    </a>
 
-    <div class="heading">
-      <div class="score">
-        <a class="restart-button score-gap">New Game</a>
-        <div class="score-container score-gap">0</div>
-        <div class="best-container score-gap">0</div>
-        <div>
-          <a href=""></a>
-        </div>
-      </div>
-    </div>
+    <a href="games/crazyhillclimb/index.html" class="game-card">
+      <img src="games/crazyhillclimb/logo.jpeg" alt="Crazy Hill Climb" />
+      <p>Crazy Hill Climb</p>
+    </a>
 
-    <div class="game-container">
-      <div class="game-message">
-        <p></p>
-        <div class="lower">
-	        <a class="keep-playing-button">Keep going</a>
-          <a class="retry-button">Try again</a>
-        </div>
-      </div>
+    <a href="games/drawthebridge/index.html" class="game-card">
+      <img src="games/drawthebridge/logo.jpeg" alt="Draw the Bridge" />
+      <p>Draw Bridge</p>
+    </a>
 
-      <div class="grid-container">
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-      </div>
+    <a href="games/fishrescue/index.html" class="game-card">
+      <img src="games/fishrescue/logo.png" alt="Fish Rescue" />
+      <p>Fish Rescue</p>
+    </a>
 
-      <div class="tile-container">
+    <a href="games/flappybird/index.html" class="game-card">
+      <img src="games/flappybird/logo.png" alt="Flappy Bird" />
+      <p>Flappy Bird</p>
+    </a>
 
-      </div>
-    </div>
-    
-  </div>
+    <a href="games/flipbottle/index.html" class="game-card">
+      <img src="games/flipbottle/logo.jpeg" alt="Flip Bottle" />
+      <p>Flip Bottle</p>
+    </a>
 
-  <script src="js/bind_polyfill.js"></script>
-  <script src="js/classlist_polyfill.js"></script>
-  <script src="js/animframe_polyfill.js"></script>
-  <script src="js/keyboard_input_manager.js"></script>
-  <script src="js/html_actuator.js"></script>
-  <script src="js/grid.js"></script>
-  <script src="js/tile.js"></script>
-  <script src="js/local_storage_manager.js"></script>
-  <script src="js/game_manager.js"></script>
-  <script src="js/application.js"></script>
+    <a href="games/jeepdriver/index.html" class="game-card">
+      <img src="games/jeepdriver/logo.jpeg" alt="Jeep Driver" />
+      <p>Jeep Driver</p>
+    </a>
+
+    <a href="https://www.gamezop.com/en/game/ludo-with-friends/SkhljT2fdgb?entryData=eyJyb29tSWQiOiIyNDI2In0=" class="game-card">
+      <img src="games/onlineludo/logo.jpg" alt="Online Ludo" />
+      <p>Online Ludo</p>
+    </a>
+
+    <a href="games/solitaireadventure/index.html" class="game-card">
+      <img src="games/solitaireadventure/logo.jpeg" alt="Solitaire Adventure" />
+      <p>Soiltrate Adventure</p>
+    </a>
+
+    <a href="games/stackball/index.html" class="game-card">
+      <img src="games/stackball/logo.jpeg" alt="Stack Ball" />
+      <p>Stack Ball</p>
+    </a>
+
+    <a href="games/tilematch/index.html" class="game-card">
+      <img src="games/tilematch/logo.jpeg" alt="Tile Match" />
+      <p>Tile Match</p>
+    </a>
+
+    <a href="games/uno/index.html" class="game-card">
+      <img src="games/uno/logo.jpeg" alt="UNO Game" />
+      <p>UNO</p>
+    </a>
+
+
+  </main>
+
+  <footer>
+    <p>© 2025 WH2 Games | Made with ❤️ by The WH2</p>
+  </footer>
 </body>
+
 </html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Flappy Bird - NChat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐦</text></svg>">
+</head>
+<body>
+    <div id="gameContainer">
+        <!-- Game Canvas -->
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- Game UI Overlay -->
+        <div id="gameUI">
+            <!-- Start Screen -->
+            <div id="startScreen" class="screen active">
+                <div class="title">
+                    <h1>🐦 Flappy Bird</h1>
+                    <p>Tap to fly!</p>
+                </div>
+                <button id="startBtn" class="gameBtn">START GAME</button>
+                <div class="instructions">
+                    <p>📱 <strong>Tap anywhere on screen</strong> to make the bird fly</p>
+                    <p>🎯 Avoid the pipes and get the highest score!</p>
+                    <p>🚀 Game gets gradually harder as you progress!</p>
+                    <div class="touchHint">
+                        <p>👆 Touch the screen to start!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game Over Screen -->
+            <div id="gameOverScreen" class="screen">
+                <div class="gameOverContent">
+                    <h2>Game Over!</h2>
+                    <div class="scoreDisplay">
+                        <p>Score: <span id="finalScore">0</span></p>
+                        <p>Best: <span id="bestScore">0</span></p>
+                    </div>
+                    <button id="restartBtn" class="gameBtn">PLAY AGAIN</button>
+                </div>
+            </div>
+            
+            <!-- In-Game UI -->
+            <div id="gameHUD" class="screen">
+                <div class="score">Score: <span id="currentScore">0</span></div>
+                <div class="pauseBtn" id="pauseBtn">⏸️</div>
+            </div>
+            
+            <!-- Pause Screen -->
+            <div id="pauseScreen" class="screen">
+                <div class="pauseContent">
+                    <h2>Paused</h2>
+                    <button id="resumeBtn" class="gameBtn">RESUME</button>
+                    <button id="restartFromPauseBtn" class="gameBtn">RESTART</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Full Screen Touch Area -->
+        <div id="fullScreenTouch" class="fullScreenTouch"></div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
